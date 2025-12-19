@@ -268,11 +268,3 @@ This template should help get you started developing with Vue 3 in Vite.
    }
    ```
 
-
-# 在项目根目录执行
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/你的用户名/你的仓库名.git
-git branch -M main
-git push -u origin main
