@@ -1,0 +1,178 @@
+// Less混入定义文件
+
+// 清除浮动
+.clearfix() {
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+}
+
+// 单行文本省略号
+.text-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 多行文本省略号
+.text-ellipsis-multi(@lines: 2) {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: @lines;
+  -webkit-box-orient: vertical;
+}
+
+// 禁止用户选择
+.user-select-none() {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// 禁止拖拽
+.draggable-none() {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+// 1px边框解决方案
+.border-1px(@color: @border-color, @direction: 'bottom') when (@direction = 'bottom') {
+  position: relative;
+  
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: @color;
+    transform: scaleY(0.5);
+    content: "";
+  }
+}
+
+.border-1px(@color: @border-color, @direction: 'top') when (@direction = 'top') {
+  position: relative;
+  
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: @color;
+    transform: scaleY(0.5);
+    content: "";
+  }
+}
+
+.border-1px(@color: @border-color, @direction: 'left') when (@direction = 'left') {
+  position: relative;
+  
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background-color: @color;
+    transform: scaleX(0.5);
+    content: "";
+  }
+}
+
+.border-1px(@color: @border-color, @direction: 'right') when (@direction = 'right') {
+  position: relative;
+  
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background-color: @color;
+    transform: scaleX(0.5);
+    content: "";
+  }
+}
+
+// 三角形
+.triangle(@direction: 'top', @size: 5px, @color: @black) when (@direction = 'top') {
+  width: 0;
+  height: 0;
+  border-top: 0;
+  border-right: @size solid transparent;
+  border-bottom: @size solid @color;
+  border-left: @size solid transparent;
+}
+
+.triangle(@direction: 'bottom', @size: 5px, @color: @black) when (@direction = 'bottom') {
+  width: 0;
+  height: 0;
+  border-top: @size solid @color;
+  border-right: @size solid transparent;
+  border-bottom: 0;
+  border-left: @size solid transparent;
+}
+
+.triangle(@direction: 'left', @size: 5px, @color: @black) when (@direction = 'left') {
+  width: 0;
+  height: 0;
+  border-top: @size solid transparent;
+  border-right: @size solid @color;
+  border-bottom: @size solid transparent;
+  border-left: 0;
+}
+
+.triangle(@direction: 'right', @size: 5px, @color: @black) when (@direction = 'right') {
+  width: 0;
+  height: 0;
+  border-top: @size solid transparent;
+  border-right: 0;
+  border-bottom: @size solid transparent;
+  border-left: @size solid @color;
+}
+
+// 居中对齐
+.flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-center-y() {
+  display: flex;
+  align-items: center;
+}
+
+.flex-center-x() {
+  display: flex;
+  justify-content: center;
+}
+
+// 绝对定位居中
+.absolute-center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.absolute-center-y() {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.absolute-center-x() {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}

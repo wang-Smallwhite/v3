@@ -1,0 +1,57 @@
+// 全局样式入口文件
+@import './variables.less';
+@import './mixins.less';
+@import './themes/light.less';
+@import './themes/dark.less';
+
+// 全局通用样式
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: @font-size-base;
+  color: var(--text-color-primary);
+  background-color: var(--background-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+// 滚动条样式
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--gray-4);
+  border-radius: @border-radius-base;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--gray-1);
+}
+
+// 文字选择样式
+::selection {
+  color: @white;
+  background-color: @primary-color;
+}
+
+// 响应式断点
+@media screen and (max-width: 768px) {
+  // 手机端样式
+  body {
+    font-size: @font-size-small;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  // 平板端样式
+}
+
+@media screen and (min-width: 1025px) {
+  // 桌面端样式
+}
