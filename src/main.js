@@ -12,7 +12,7 @@ import { initTheme } from './utils/theme'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 // 初始化rem适配
-initRem()
+// initRem()
 
 // 初始化主题
 initTheme()
