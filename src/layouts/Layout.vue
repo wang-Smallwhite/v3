@@ -37,7 +37,7 @@ import Main from '@/components/layout/Main.vue'
   }
 
   .layout-header {
-    background-color: #fff;
+    background-color: var(--white);
     color: #333;
     border-bottom: 1px solid #eee;
     padding: 0;
@@ -46,8 +46,7 @@ import Main from '@/components/layout/Main.vue'
   }
 
   .layout-main {
-    background-color: #f5f5f5;
-    padding: 20px;
+    background-color: var(--background-color);
     overflow-y: auto;
   }
 }

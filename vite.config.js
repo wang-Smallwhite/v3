@@ -10,6 +10,19 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // 本地环境跨域配置
+  server: {
+    host: 'localhost',
+    prot: 5173,
+    open: false,
+    proxy: {
+      '/mock': {
+        target: 'https://www.mocklib.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/mock/, ''),
+      },
+    },
+  },
   plugins: [
     vue(),
     vueJsx(),
@@ -23,7 +36,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   css: {

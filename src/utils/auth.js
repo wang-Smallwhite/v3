@@ -1,7 +1,6 @@
 // 认证相关工具函数
 
 const TOKEN_KEY = 'access_token'
-const USER_INFO_KEY = 'user_info'
 
 // 获取token
 export function getToken() {

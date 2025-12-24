@@ -39,32 +39,17 @@
 
 <script setup>
 import { ref, watch, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { routes } from '@/router/routes'
 const route = useRoute()
-const router = useRouter()
 const activeMenu = ref(route.path)
 
 // 菜单路由数据
 const menuRoutes = ref([])
 
-// 过滤需要在菜单中显示的路由
-const filterRoutes = (routes) => {
-  return routes.filter((route) => {
-    // 如果路由有 meta.hidden 属性且为 true，则不显示在菜单中
-    if (route.meta && route.meta.hidden) {
-      return false
-    }
-    // 如果路由没有子路由，或者子路由数量大于1，则显示
-    return !route.children || route.children.length > 0
-  })
-}
-
 onMounted(() => {
   // 使用导入的路由配置
   const allRoutes = routes
-
-  console.log('All Routes from routes.js:', allRoutes)
 
   // 过滤出需要显示在菜单中的路由
   menuRoutes.value = allRoutes.filter((route) => {
@@ -78,8 +63,6 @@ onMounted(() => {
     }
     return true
   })
-
-  console.log('Final Menu Routes:', menuRoutes.value)
 })
 
 // 监听路由变化，更新激活菜单
