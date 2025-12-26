@@ -18,12 +18,12 @@ service.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
-    
+
     // 如果是post请求且数据是FormData，则删除Content-Type让浏览器自动设置
     if (config.data instanceof FormData) {
       delete config.headers['Content-Type']
     }
-    
+
     return config
   },
   (error) => {
@@ -38,7 +38,7 @@ service.interceptors.response.use(
   (response) => {
     // 对响应数据做点什么
     const res = response.data
-    
+
     // 根据实际业务需求调整判断条件
     if (res.code === 200) {
       return res
@@ -51,7 +51,7 @@ service.interceptors.response.use(
   (error) => {
     // 对响应错误做点什么
     console.error('响应错误:', error)
-    
+
     // 根据错误类型进行不同处理
     if (error.response) {
       // 服务器返回了错误状态码
@@ -70,6 +70,10 @@ service.interceptors.response.use(
         case 500:
           console.error('服务器内部错误')
           break
+        case 'ECONNABORTED':
+          // 请求超时 弹窗提示用户重新请求
+
+          break
         default:
           console.error(`错误:${error.response.status}`)
       }
@@ -80,7 +84,7 @@ service.interceptors.response.use(
       // 其他错误
       console.error('请求失败:', error.message)
     }
-    
+
     return Promise.reject(error)
   }
 )
